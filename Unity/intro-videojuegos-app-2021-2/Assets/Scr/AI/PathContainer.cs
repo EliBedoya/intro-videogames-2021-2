@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class PathContainer : MonoBehaviour
 {
     [SerializeField]
     private List<Transform> _pathPoints;
+    private NavMeshAgent agentEnemy;
 
     private int _currentPointIndex = 0;
 
     public int TotalPoints => _pathPoints != null ? _pathPoints.Count : 0;
-    
+
     public Vector3 CurrentPoint()
     {
         if (_pathPoints == null || _pathPoints.Count == 0)

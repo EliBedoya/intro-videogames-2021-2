@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AIIdleState : AIState
 {
-
+    [SerializeField] float _timer;
     public AIStateID GetID()
     {
         return AIStateID.Idle;
@@ -12,17 +12,16 @@ public class AIIdleState : AIState
 
     public void Enter(AIAgent agent)
     {
+        _timer = 5;
     }
 
     public void Update(AIAgent agent)
     {
-        //TODO: Agregar timer para ir a Patrol
-        
-        //Si el player esta cerca -> Chase
-        Vector3 targetDirection = agent.Target.position - agent.transform.position;
-        if (targetDirection.magnitude > agent.AIConfig.detectionRange)
+        //Debug.Log("Idle timer: " + _timer);
+        _timer -= Time.deltaTime;
+        if (_timer <= 0)
         {
-            return;
+            agent.StateMachine.ChangeState(AIStateID.Patrol);
         }
         
         //Si esta viendo al player

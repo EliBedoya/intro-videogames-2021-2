@@ -56,4 +56,9 @@ public class MovableAgent : MonoBehaviour
     {
         m_NavMeshAgent.isStopped = true;
     }
+
+    public void Move()
+    {
+        m_NavMeshAgent.isStopped = false;
+    }
 }

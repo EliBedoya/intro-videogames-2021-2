@@ -13,7 +13,7 @@ public class AIAttackState : AIState
 
     public void Enter(AIAgent agent)
     {
-        Debug.LogError("Attacking to player!!!!!");
+        Debug.LogError("Attacking the player!!!!!");
         _timer = agent.AIConfig.attackDuration;
     }
 
@@ -22,6 +22,7 @@ public class AIAttackState : AIState
         _timer -= Time.deltaTime;
         if (_timer <= 0)
         {
+            Debug.Log("Going to idle");
             agent.StateMachine.ChangeState(AIStateID.Idle);
         }
     }
